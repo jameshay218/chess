@@ -2,19 +2,27 @@
 
 using namespace std;
 
-int ChessPiece::check_valid_moves(string destination_coords) {
-  if (find(available_moves.begin(), available_moves.end(), destination_coords) == available_moves.end()) {
-    return 1; //The specified move is not within valid moves
+/* Checks if a given square is within the piece's valid move set */
+bool ChessPiece::check_valid_moves(string destination_coords) {
+  if (find(available_moves.begin(), available_moves.end(), 
+	   destination_coords) == available_moves.end()) {
+    return true;
   }
-  return 0; 
+  return false; 
 }
 
+/* Creates an array of coordinates stemming from the start square in each of 
+   the four possible directions. These squares are then check sequentially and
+   added to the valid move set if they are a legal move (excluding a check for
+   check). Note that if any piece is found in this line, then the next line is
+   checked */
 void ChessPiece::check_in_line(string current_coords) {
   string temp = "A1";
   vector<string> temp_moves;
 
   for(int index = 1; index <= 4; index++) {
     temp_moves.clear();    
+   
     switch (index) {
     case 1:
       for (temp[0] = current_coords[0] + 1, temp[1] = current_coords[1]; 
@@ -45,8 +53,12 @@ void ChessPiece::check_in_line(string current_coords) {
       }
       break;
     }
-    
-    for (vector<string>::iterator i = temp_moves.begin(); i != temp_moves.end(); i++) {
+    /* Iterates through the line of strings produced above */
+    for (vector<string>::iterator i = temp_moves.begin(); 
+	 i != temp_moves.end(); i++) {
+      /* Adds the coordinate to the valid move set if the square is empty or
+	 contains an opposing player's piece. If any piece is hit, then stop
+	 checking this line */
       if (chess_board->check_coordinates(*i) == true) {
 	if (chess_board->contains_piece(*i) == empty_square) {
 	  available_moves.push_back(*i);
@@ -63,7 +75,8 @@ void ChessPiece::check_in_line(string current_coords) {
   }
 }
 
-
+/* Checks all of the four diagonal lines for valid moves similarly to the 
+   "check_in_line" function */
 void ChessPiece::check_diagonal(string current_coords) {
   string temp = "A1";
   vector<string> temp_moves;
@@ -106,7 +119,9 @@ void ChessPiece::check_diagonal(string current_coords) {
       break;
     }
 
-    for (vector<string>::iterator i = temp_moves.begin(); i != temp_moves.end(); i++) {
+    for (vector<string>::iterator i = temp_moves.begin(); 
+	 i != temp_moves.end(); i++) {
+      
       if (chess_board->check_coordinates(*i) == true) { 
 	if (chess_board->contains_piece(*i) == empty_square) {
 	  available_moves.push_back(*i);

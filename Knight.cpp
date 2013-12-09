@@ -7,6 +7,8 @@ int Knight::generate_valid_moves(string current_coords) {
   available_moves.clear();
   string temp = "A1"; 
   
+  /* Generates all of the 8 possible moves for the knight, and checks if 
+     the knight may legally move to any of these squares */
   for(int i = 1; i <= 8; i++) {
     switch(i) {
     case 1:
@@ -42,6 +44,7 @@ int Knight::generate_valid_moves(string current_coords) {
       temp[1] = current_coords[1] + 2;
       break;
     }
+
     if(chess_board->check_coordinates(temp) == true 
        && chess_board->contains_piece(temp) != get_colour()) {
       available_moves.push_back(temp);

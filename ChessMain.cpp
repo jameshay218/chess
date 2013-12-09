@@ -4,6 +4,16 @@ using namespace std;
 
 #include "ChessBoard.hpp"
 
+#include "ChessPiece.hpp"
+
+#include "Pawn.hpp"
+#include "Rook.hpp"
+#include "Knight.hpp"
+#include "Bishop.hpp"
+#include "Queen.hpp"
+#include "King.hpp"
+
+
 int main() {
 
     cout << "===========================" << endl;
@@ -13,19 +23,21 @@ int main() {
 
     ChessBoard cb;
     cout << endl;
-
+    
     cb.submitMove("D7", "D6");
     cout << endl;
-
+    
     cb.submitMove("D4", "H6");
     cout << endl;
-
+    
     cb.submitMove("D2", "D4");
     cout << endl;
 
     cb.submitMove("F8", "B4");
     cout << endl;
-
+    cb.submitMove("B8", "B8");
+    cout << endl;
+    
     cout << "===========================" << endl;
     cout << "Alekhine vs. Vasic (1931)" << endl;
     cout << "===========================" << endl;
@@ -33,23 +45,31 @@ int main() {
 
     cb.resetBoard();
     cout << endl;
+cb.submitMove("E2","E4");
+cb.submitMove("E7","E5");
+cb.submitMove("B1","C3");
+cb.submitMove("F7","F6");
+cb.submitMove("C3","B5");
+cb.submitMove("D7","D6");
+cb.submitMove("B5","C7");
 
+    /*
     cb.submitMove("E2", "E4");
     cb.submitMove("E7", "E6");
     cout << endl;
-
+    
     cb.submitMove("D2", "D4");
     cb.submitMove("D7", "D5");
     cout << endl;
-
+    
     cb.submitMove("B1", "C3");
     cb.submitMove("F8", "B4");
     cout << endl;
-
+    
     cb.submitMove("F1", "D3");
     cb.submitMove("B4", "C3");
     cout << endl;
-
+    
     cb.submitMove("B2", "C3");
     cb.submitMove("H7", "H6");
     cout << endl;
@@ -76,6 +96,7 @@ int main() {
 
     cb.submitMove("D3", "G6");
     cout << endl;
-
+    */
     return 0;
+    
 }

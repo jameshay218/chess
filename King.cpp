@@ -7,6 +7,9 @@ int King::generate_valid_moves(string current_coords) {
   available_moves.clear();
   string temp = "A1";
  
+  /* Generates the 8 possible moves for the king, and adds the move
+     to the valid move set if any of these moves may be made legally
+     (excluding a check for check) */
   for (int i = 1; i <= 8; i++) {
     switch(i) {
     case 1:
@@ -42,6 +45,7 @@ int King::generate_valid_moves(string current_coords) {
       temp[1] = current_coords[1] + 1;
       break;
     }
+
     if (chess_board->check_coordinates(temp) == true 
 	&& chess_board->contains_piece(temp) != get_colour()) {
       available_moves.push_back(temp);
