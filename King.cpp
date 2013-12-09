@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-int King::generate_valid_moves(string current_coords) {
+int King::generate_valid_moves(const string current_coords) {
   available_moves.clear();
   string temp = "A1";
  

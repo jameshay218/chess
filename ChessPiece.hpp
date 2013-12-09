@@ -33,23 +33,23 @@ public:
   /* Pure virtual function that is overriden in all of the chess piece sub
      classes. Returns the number of valid moves that the piece could make from
      a given start coordinate */
-  virtual int generate_valid_moves(string current_coords) = 0;
+  virtual int generate_valid_moves(const string current_coords) = 0;
 
 
   /*========================== Check Valid Moves =============================*/
   /* Checks if a given coordinate is within the piece's valid move set */
-  bool check_valid_moves(string destination_coords);
+  bool check_valid_moves(const string destination_coords);
 
   /*============================ Check In Line ===============================*/
   /* Function to check all squares in a horizontal and vertical line from a 
      given square. This function is inherited and used by the rook and queen
      pieces */
-  void check_in_line(string current_coords);
+  void check_in_line(const string current_coords);
 
   /*=========================== Check Diagonal ===============================*/
   /* Function to check all squares in a diagnoal line from a given square. 
      This function is inherited and used by the bishop and queen pieces */
-  void check_diagonal(string current_coords);
+  void check_diagonal(const string current_coords);
 
   /*------------------------- Get Available Moves ----------------------------*/
   /* Returns the available move set for testing */

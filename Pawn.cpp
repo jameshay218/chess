@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int Pawn::generate_valid_moves(string current_coords) {
+int Pawn::generate_valid_moves(const string current_coords) {
   available_moves.clear();
   string temp = "A1";
   int colour_modifier;

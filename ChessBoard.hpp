@@ -59,19 +59,19 @@ public:
      of the necessary criteria (ie. moving a piece of the correct colour; 
      the coordinates are valid; that the game has not ended; if checkmate, 
      stalemate or check have been reached). */
-  void submitMove(string start_coords, string dest_coords);
+  void submitMove(const string start_coords, const string dest_coords);
 
 
   /*---------------------------- Check Coordinates ---------------------------*/
   /* Checks that the given coordinates are of the form "XY" where X is a 
      character from A to H and Y is a number from 1 to 8 */
-  bool check_coordinates(string coords);
+  bool check_coordinates(const string coords);
 
 
 /*---------------------------- Contains Piece --------------------------------*/
 /* Checks if a given coordinate contains a piece, and returns the colour of
    that piece (empty_square if square is empty) */
-  Colour contains_piece(string coords);
+  Colour contains_piece(const string coords);
 
 
 /*---------------------------- Check for Check -------------------------------*/
@@ -79,7 +79,7 @@ public:
    returns true if that player's king position is within the valid moves of one
    of the other player's pieces (ie. if the opposing player could take a given
    player's king in the next turn). Otherwise returns false */
-  bool in_check(string piece_position, Colour player_turn);
+  bool in_check(const string piece_position, const Colour player_turn);
 
 
 /*-------------------------- Check for Valid Moves ---------------------------*/
@@ -96,7 +96,8 @@ public:
 /*-------------------------- Change king position ----------------------------*/
 /* Changes the recorded position of a given player's king following that king
    being moved */
-  void change_king_position(string destination_coordinates, Colour piece_colour);
+  void change_king_position(const string destination_coordinates, 
+			    const Colour piece_colour);
 
 
 /*------------------------------- Move Piece ---------------------------------*/
@@ -105,17 +106,19 @@ public:
    The function may be passed the "simulate" flag, causes the given move to be
    reversed at the end of the function. If the simulate flag is set to false,
    the move is completed and a suitable message is displayed */
-  bool move_piece(string start_coords, string dest_coords, bool simulate);
+  bool move_piece(const string start_coords, const string dest_coords, 
+		  const bool simulate);
 
   
 /*------------------------------ Output Error -------------------------------*/
 /* Outputs a suitable error message to the standard output stream */
-  void output_error(int error, string start_coords, string dest_coords);
+  void output_error(const int error, const string start_coords, 
+		    const string dest_coords);
 
 
 /*------------------------------ Output Piece -------------------------------*/
 /* Outputs the colour and type of a piece to the standard output stream */
-  void output_piece(PieceType piece, Colour colour);
+  void output_piece(const PieceType piece, const Colour colour);
 };
 
     

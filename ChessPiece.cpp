@@ -3,7 +3,7 @@
 using namespace std;
 
 /* Checks if a given square is within the piece's valid move set */
-bool ChessPiece::check_valid_moves(string destination_coords) {
+bool ChessPiece::check_valid_moves(const string destination_coords) {
   if (find(available_moves.begin(), available_moves.end(), 
 	   destination_coords) == available_moves.end()) {
     return true;
@@ -16,7 +16,7 @@ bool ChessPiece::check_valid_moves(string destination_coords) {
    added to the valid move set if they are a legal move (excluding a check for
    check). Note that if any piece is found in this line, then the next line is
    checked */
-void ChessPiece::check_in_line(string current_coords) {
+void ChessPiece::check_in_line(const string current_coords) {
   string temp = "A1";
   vector<string> temp_moves;
 
@@ -77,7 +77,7 @@ void ChessPiece::check_in_line(string current_coords) {
 
 /* Checks all of the four diagonal lines for valid moves similarly to the 
    "check_in_line" function */
-void ChessPiece::check_diagonal(string current_coords) {
+void ChessPiece::check_diagonal(const string current_coords) {
   string temp = "A1";
   vector<string> temp_moves;
 

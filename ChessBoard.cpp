@@ -89,7 +89,7 @@ ChessBoard::~ChessBoard() {
   start_board.clear();
 }
 
-void ChessBoard::submitMove(string start_coords, string dest_coords) {
+void ChessBoard::submitMove(const string start_coords, const string dest_coords) {
   bool check = false; // Tracks whether or not the opposing player is in check
   map_itr itr = board.find(start_coords); /* Holds the map element for the
 					     given start coordinate */
@@ -158,7 +158,7 @@ void ChessBoard::submitMove(string start_coords, string dest_coords) {
 }
 
 /* Checks if coordinates are within bounds */
-bool ChessBoard::check_coordinates(string coords) {
+bool ChessBoard::check_coordinates(const string coords) {
   if(coords.length() != 2 || coords[0] < 'A' || coords[0] > 'H' 
      || coords[1] < '1' || coords[1] > '8') {
     return false;
@@ -167,7 +167,7 @@ bool ChessBoard::check_coordinates(string coords) {
 }
 
 /* Checks if a given coordinate contains a piece */
-Colour ChessBoard::contains_piece(string coords) {
+Colour ChessBoard::contains_piece(const string coords) {
   map_itr iterator = board.find(coords);
   if(iterator == board.end() || iterator->second == NULL) 
     return empty_square;
@@ -176,8 +176,8 @@ Colour ChessBoard::contains_piece(string coords) {
 }
 
 /* Changes a given king's position */
-void ChessBoard::change_king_position(string destination_coordinates, 
-				      Colour piece_colour) {
+void ChessBoard::change_king_position(const string destination_coordinates, 
+				      const Colour piece_colour) {
   if(piece_colour == white) {
     white_king_position = destination_coordinates;
   }
@@ -189,7 +189,7 @@ void ChessBoard::change_king_position(string destination_coordinates,
 
 /* Checks if a given player is in check. Returns true if the position 
    of a given piece is within any of the player's valid moves */
-bool ChessBoard::in_check(string piece_pos, Colour player_turn) {
+bool ChessBoard::in_check(const string piece_pos, const Colour player_turn) {
   string temp = "A1";
 
   /* Iterates through all of the pieces on the board */
@@ -252,8 +252,9 @@ bool ChessBoard::no_valid_moves(Colour player_turn) {
    and sets the value of the start coordinate map element to NULL. If the
    simulate flag is true, then the move is reversed at the end of the 
    function (and returns true if the move was successful) */
-bool ChessBoard::move_piece(string start_coords, string dest_coords, 
-			   bool simulate) {
+bool ChessBoard::move_piece(const string start_coords, 
+			    const string dest_coords, 
+			    const bool simulate) {
   map_itr dest_itr = board.find(dest_coords);
   map_itr start_itr = board.find(start_coords);
   ChessPiece* moving_piece = 0;
@@ -321,7 +322,9 @@ bool ChessBoard::move_piece(string start_coords, string dest_coords,
 }
 
 /* Outputs a suitable error message given a provided error code */
-void ChessBoard::output_error(int error, string start_coords, string dest_coords) {
+void ChessBoard::output_error(const int error, 
+			      const string start_coords, 
+			      const string dest_coords) {
   map_itr itr = board.find(start_coords);
          
   switch (error) {
@@ -342,7 +345,8 @@ void ChessBoard::output_error(int error, string start_coords, string dest_coords
 }
 
 /* Outputs the colour and type of a given piece */
-void ChessBoard::output_piece(PieceType piece, Colour colour) {
+void ChessBoard::output_piece(const PieceType piece, 
+			      const Colour colour) {
   if (colour == white) 
     cout << "White's ";
   else 

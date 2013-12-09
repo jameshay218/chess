@@ -13,7 +13,7 @@ private:
   string start_square;
   
 public:
-  int generate_valid_moves(string current_coords);
+  int generate_valid_moves(const string current_coords);
   Pawn(Colour _colour, ChessBoard* _board, PieceType _type, string _square) 
     : ChessPiece(_colour, _board, _type),  start_square(_square) {  };
   ~Pawn() {};
